@@ -46,31 +46,78 @@ class Deck{
 
     createHand(){
         console.log('Creating hands...');
-        this.hand1 = this.cards.slice(0, this.cards.length/2);
-        this.hand2 = this.cards.slice(this.cards.length/2, this.cards.length);
-        console.log(this.hand1);
-        console.log(this.hand2);
+        this.hand1 = this.cards.slice(0, this.cards.length/2); //takes the first half of cards array for hand1
+        this.hand2 = this.cards.slice(this.cards.length/2, this.cards.length);  //takes second half of cards array for hand 2
+        // console.log(this.hand1);    //shows hand1 works
+        // console.log(this.hand2);    //shows hand2 works
     }
     
 }
 
 class Player{
-    constructor(){
+    constructor(name, hand, points){
         this.name = this.name;
         this.hand = [];
-        this.points = null;
+        this.points = 0;
     };
-    //code that deals each player a hand
-    // deal(){
-    //     console.log('Dealing cards...')
-    //     let newDeck = new Deck(); //makes a deck
-    //     this.cards = newDeck.createCard(); //runs createCard
-    //     console.log('This worked: ', this.cards);
-        
-    // }
+
+    describe(){
+        console.log(`${this.name} has ${this.hand}`)
+    }
 }
 
-class War{
+class Game{
+    constructor(){
+        this.player1 = this.player1
+        this.player2 = this.player2
+        this.newDeck = this.newDeck
+
+    }
+
+    startGame(){
+        this.newDeck = new Deck();  //created a deck
+        this.newDeck.createCard();  //runs createCard, shuffle, and create hand
+        console.log('Starting game...', this.newDeck);
+        
+        this.player1 = new Player();    //creates player 1
+            this.player1.name = 'Player 1';
+            this.player1.hand = this.newDeck.hand1;
+
+        this.player2 = new Player();    //creates player 2
+            this.player2.name = 'Player 2';
+            this.player2.hand = this.newDeck.hand2;
+        this.runGame(); 
+    }
+
+    runGame(){
+        console.log('Running game...');
+        for(let i = 0; i < 26; i++){
+            console.log(this.player1.hand[i].rank, ' of ', this.player1.hand[i].suit, ' vs ', this.player2.hand[i].rank, ' of ', this.player2.hand[i].suit);
+            
+            //finds the rank of the card in the players hand then finds the index of that rank in the original ranks array
+            let playedCard1 = this.newDeck.ranks.indexOf(this.player1.hand[i].rank);
+            let playedCard2 = this.newDeck.ranks.indexOf(this.player2.hand[i].rank);
+            
+            if(playedCard1 > playedCard2){
+                console.log('   Player 1 won that round. +1 point!')
+                this.player1.points += 1;
+            } else if (playedCard1 < playedCard2){
+                console.log('   Player 2 won that round. +1 point!')
+                this.player2.points += 1;
+            } else{
+                console.log('   It is a tie! No points awarded');
+            }
+        };
+
+        if(this.player1.points > this.player2.points){
+            console.log('Player 1 has won the game with ', this.player1.points, ' points!');
+        } else if(this.player1.points < this.player2.points){
+            console.log('Player 2 has won the game with ', this.player2.points, ' points!');
+        } else{
+            console.log('The game has ended in a tie...');
+        }
+    }
+    
 
  }
 
@@ -78,8 +125,10 @@ class War{
 
 
 
-let newDeck = new Deck(); //makes a deck
-newDeck.createCard(); //runs createCard
+
+let newGame = new Game();
+newGame.startGame();
+
 
 
 
