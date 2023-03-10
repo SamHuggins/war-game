@@ -28,7 +28,7 @@ class Deck{
                     
             }
         }
-        console.log(this.cards); //logs deck
+ //       console.log(this.cards); //logs deck
         this.shuffle();
     }
 
@@ -40,7 +40,7 @@ class Deck{
             [this.cards[i], this.cards[rng]] = [this.cards[rng], this.cards[i]];    //swaps cards[i] with a random element in the array
             
         }
-        console.log(this.cards);    //checks that cards have been shuffled
+//        console.log(this.cards);    //checks that cards have been shuffled
         this.createHand();
     }
 
@@ -77,7 +77,7 @@ class Game{
     startGame(){
         this.newDeck = new Deck();  //created a deck
         this.newDeck.createCard();  //runs createCard, shuffle, and create hand
-        console.log('Starting game...', this.newDeck);
+        console.log('Starting game...');
         
         this.player1 = new Player();    //creates player 1
             this.player1.name = 'Player 1';
@@ -105,7 +105,7 @@ class Game{
                 console.log('   Player 2 won that round. +1 point!')
                 this.player2.points += 1;
             } else{
-                console.log('   It is a tie! No points awarded');
+                console.log('   It is a tie! No points awarded...');
             }
         };
 
@@ -117,21 +117,7 @@ class Game{
             console.log('The game has ended in a tie...');
         }
     }
-    
-
  }
-
-
-
-
-
 
 let newGame = new Game();
 newGame.startGame();
-
-
-
-
-
-
-
