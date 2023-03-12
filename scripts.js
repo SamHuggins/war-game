@@ -121,3 +121,5 @@ class Game{
 
 let newGame = new Game();
 newGame.startGame();
+
+module.exports = {Deck, Game}
